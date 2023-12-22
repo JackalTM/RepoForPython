@@ -2,20 +2,21 @@ from card_game_war.card_class import *
 from card_game_war.deck_class import *
 from card_game_war.player_class import *
 
-def CALL_test1():
+def CALL_test():
+    print("Begin od CALL_test()")
     instDeck = DeckCards(nStacks= 1)
-    #instDeck.SuffleDeck()
     instDeck.TranslatedDeck()
-    instDeck.PrintListInt()
+    
+    instPlayer1 = PlayerHand("Player1")
 
-def CALL_test2():
-    instDeck = DeckCards(nStacks= 1)
-    #instDeck.SuffleDeck()
-    instDeck.TranslatedDeck()
-    instDeck.PrintListObj()
+    instPlayer1.AddCardObj(instDeck.GetCardObj())
+    instPlayer1.AddCardObj(instDeck.GetCardObj())
+    instPlayer1.AddCardObj(instDeck.GetCardObj())
+    instPlayer1.AddCardObj(instDeck.GetCardObj())
 
+    instPlayer1.PrintCards()    
 
-if __name__ == "__main__":
-    CALL_test1()
+if (__name__ == "__main__"):
+    CALL_test()
 else:
     print("WRONG CALL!")

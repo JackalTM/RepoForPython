@@ -28,12 +28,11 @@ class DeckCards(CardTranslate):
                 for j in CardTranslate.CARD_RANK_STR_FROM_VAL:
                     self.stackListInt.append( i | j )
             n = n + 1
-        self.nMAX = len(self.stackListInt)
-        self.index = self.nMAX 
+        self.listLenght = len(self.stackListInt)
+        self.index = self.listLenght 
 
         return None
     #=======================================================================================
-
     '''*************************************************************************************
     @name       SuffleDeck
     @brief      Initialize self instance of Random object
@@ -45,7 +44,6 @@ class DeckCards(CardTranslate):
         self.instRandom.shuffle(self.stackListInt)
         return None
     #=======================================================================================
-
     '''*************************************************************************************
     @name       TranslatedDeck
     @brief      Convert card list from int to SingleCard object
@@ -63,13 +61,13 @@ class DeckCards(CardTranslate):
             
         return None
     #=======================================================================================
-
     '''*************************************************************************************
     @name       GetCard
     @brief      Return last card on stack
-    @param[in]  ...
-    @note       ...
-    @return     ...
+    @param[in]  void 
+    @note       index is decremented before read coz initialized index is len()
+                Then should be 1 less from start 
+    @return     Value of a card 
     '''
     def GetCardInt(self):
         if self.index > 0x00:
@@ -82,13 +80,13 @@ class DeckCards(CardTranslate):
     '''*************************************************************************************
     @name       PutCard
     @brief      Return last card on stack
-    @param[in]  ...
+    @param[in]  cardInt - This argument must by of type int
     @note       ...
     @return     ...
     '''
-    def PutCardInt(self, inCard):
-        if self.index < self.nMAX:
-            self.stackListInt[self.index] = inCard
+    def PutCardInt(self, cardInt):
+        if (self.index < self.listLenght) and (type(cardInt) == int):
+            self.stackListInt[self.index] = cardInt
             self.index = self.index + 1
             return True
         else:
@@ -98,9 +96,10 @@ class DeckCards(CardTranslate):
     '''*************************************************************************************
     @name       GetCardObj
     @brief      Return last card on stack
-    @param[in]  ...
-    @note       ...
-    @return     ...
+    @param[in]  void 
+    @note       index is decremented before read coz initialized index is len()
+                Then should be 1 less from start
+    @return     Object SingleCard from list
     '''
     def GetCardObj(self):
         if self.index > 0x00:
@@ -113,13 +112,13 @@ class DeckCards(CardTranslate):
     '''*************************************************************************************
     @name       PutCardObj
     @brief      Return last card on stack
-    @param[in]  ...
+    @param[in]  CardObj - This arguent must to be of type SingeCard object 
     @note       ...
     @return     ...
     '''
-    def PutCardObj(self, inCard):
-        if self.index < self.nMAX:
-            self.stackListObj[self.index] = inCard
+    def PutCardObj(self, CardObj):
+        if (self.index < self.nMAX) and (type(CardObj) == SingleCard):
+            self.stackListObj[self.index] = CardObj
             self.index = self.index + 1
             return True
         else:
@@ -151,4 +150,44 @@ class DeckCards(CardTranslate):
             print(card)
         return None
     #=======================================================================================
+
+    '''*************************************************************************************
+    @name       __iter__
+    @brief      Iterator method
+    @param[in]  void
+    @note       This method is an iterator for retur card 
+    @return     self
+    '''
+    def __iter__(self):
+        return self
+    #=======================================================================================
+    '''*************************************************************************************
+    @name       __next__
+    @brief      Next method for generator 
+    @param[in]  void
+    @note       This method is an iterator for retur c
+    @return     Next element for "for" iteration
+    '''
+    def __next__(self):
+        if self.index > 0x00:
+            self.index = self.index - 1
+            return self.stackListInt[self.index]
+        else:
+            raise StopIteration
+    #=======================================================================================
+        
+    '''*************************************************************************************
+    @name       __iter__
+    @brief      Iterator method
+    @param[in]  void
+    @note       This method is an iterator for retur card 
+    @return     self
+    '''
+    def GeneratorCardObj(self):
+        while(self.index > 0x00):
+            self.index = self.index - 1
+            yield self.stackListInt[self.index]
+
+    #=======================================================================================
+    
 #===========================================================================================
