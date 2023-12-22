@@ -1,10 +1,14 @@
 import random
 
+from card_game_war.card_class import CardTranslate
+from card_game_war.card_class import SingleCard
+
 '''*****************************************************************************************
-Class with cards content 
+This class contain two static class. 
+They are used to translate card value.
+No need to use __int__() from these classes.
 '''
-from card_game_war._cards_const import CardRankAndSuit
-class DeckCards(CardRankAndSuit):    
+class DeckCards(CardTranslate):    
     '''
     @name       __init__
     @brief      Initialize self instance of Random object
@@ -14,14 +18,17 @@ class DeckCards(CardRankAndSuit):
     '''
     def __init__(self, nStacks):
         self.instRandom = random.Random()
-        self.stackList = []
+
+        self.stackListInt = []
+        self.stackListObj = []
+
         n = 0
         while(n < nStacks):
-            for i in CardRankAndSuit.CARD_SUIT_STR_FROM_VAL:
-                for j in CardRankAndSuit.CARD_RANK_STR_FROM_VAL:
-                    self.stackList.append(i | j)
+            for i in CardTranslate.CARD_SUIT_STR_FROM_VAL:
+                for j in CardTranslate.CARD_RANK_STR_FROM_VAL:
+                    self.stackListInt.append( i | j )
             n = n + 1
-        self.nMAX = len(self.stackList)
+        self.nMAX = len(self.stackListInt)
         self.index = self.nMAX 
 
         return None
@@ -35,7 +42,25 @@ class DeckCards(CardRankAndSuit):
     @return     ...
     '''
     def SuffleDeck(self):
-        self.instRandom.shuffle(self.stackList)
+        self.instRandom.shuffle(self.stackListInt)
+        return None
+    #=======================================================================================
+
+    '''*************************************************************************************
+    @name       TranslatedDeck
+    @brief      Convert card list from int to SingleCard object
+    @param[in]  void
+    @note       Method shoud be called after SuffleDeck() to create new translated deck.
+    @return     None
+    '''
+    def TranslatedDeck(self):
+        self.stackListObj = []
+
+        for cardInt in self.stackListInt:
+            if type(cardInt) == int:
+                (rank_value, suit_value, rank_str, suit_str) = CardTranslate.TransleteCard(deck_value= cardInt)
+                self.stackListObj.append(SingleCard(rank_value, suit_value, rank_str, suit_str))
+            
         return None
     #=======================================================================================
 
@@ -46,10 +71,10 @@ class DeckCards(CardRankAndSuit):
     @note       ...
     @return     ...
     '''
-    def GetCard(self):
+    def GetCardInt(self):
         if self.index > 0x00:
             self.index = self.index - 1
-            return self.stackList[self.index]
+            return self.stackListInt[self.index]
         else:
             return 0x00
     #=======================================================================================
@@ -61,12 +86,69 @@ class DeckCards(CardRankAndSuit):
     @note       ...
     @return     ...
     '''
-    def PutCard(self, inCard):
+    def PutCardInt(self, inCard):
         if self.index < self.nMAX:
-            self.stackList[self.index] = inCard
+            self.stackListInt[self.index] = inCard
             self.index = self.index + 1
             return True
         else:
             return False
+    #=======================================================================================
+        
+    '''*************************************************************************************
+    @name       GetCardObj
+    @brief      Return last card on stack
+    @param[in]  ...
+    @note       ...
+    @return     ...
+    '''
+    def GetCardObj(self):
+        if self.index > 0x00:
+            self.index = self.index - 1
+            return self.stackListObj[self.index]
+        else:
+            return 0x00
+    #=======================================================================================
+        
+    '''*************************************************************************************
+    @name       PutCardObj
+    @brief      Return last card on stack
+    @param[in]  ...
+    @note       ...
+    @return     ...
+    '''
+    def PutCardObj(self, inCard):
+        if self.index < self.nMAX:
+            self.stackListObj[self.index] = inCard
+            self.index = self.index + 1
+            return True
+        else:
+            return False
+    #=======================================================================================
+        
+    '''*************************************************************************************
+    @name       PrintListInt
+    @brief      Print list of card in int format.
+    @param[in]  void
+    @note       ...
+    @return     None
+    '''
+    def PrintListInt(self):
+        for card in self.stackListInt:
+            print("- {}".format(hex(card)))
+        return None
+    #=======================================================================================
+
+    '''*************************************************************************************
+    @name       PrintListObj
+    @brief      Print list of card in int format.
+    @param[in]  void
+    @note       ...
+    @return     None
+    '''
+    def PrintListObj(self):
+        for card in self.stackListObj:
+            print(card)
+        return None
     #=======================================================================================
 #===========================================================================================

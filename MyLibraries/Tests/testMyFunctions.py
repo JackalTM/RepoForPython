@@ -1,23 +1,21 @@
-#from card_game_war.card_class import *
+from card_game_war.card_class import *
 from card_game_war.deck_class import *
 from card_game_war.player_class import *
 
-def CALL_test_card():
-    instDeckCards = DeckCards(0x01)
-    instDeckCards.SuffleDeck()
+def CALL_test1():
+    instDeck = DeckCards(nStacks= 1)
+    #instDeck.SuffleDeck()
+    instDeck.TranslatedDeck()
+    instDeck.PrintListInt()
 
-    while(True):
-        cardNum = instDeckCards.GetCard()
-        if(cardNum > 0x00):
-            print("- {} - left {}".format(hex(cardNum), instDeckCards.index))
-        else:
-            break
+def CALL_test2():
+    instDeck = DeckCards(nStacks= 1)
+    #instDeck.SuffleDeck()
+    instDeck.TranslatedDeck()
+    instDeck.PrintListObj()
 
-def CALL_test_player():
-    instPlayer = PlayerHand("Player1")
-    instPlayer.AddCard(Card)
 
 if __name__ == "__main__":
-    CALL_test_card()
+    CALL_test1()
 else:
     print("WRONG CALL!")

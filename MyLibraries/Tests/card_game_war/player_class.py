@@ -1,7 +1,8 @@
-'''
-Class for player to menage card
+'''*****************************************************************************************
+Player class
 '''
 from card_game_war.card_class import SingleCard
+
 class PlayerHand(SingleCard):
 
     '''*************************************************************************************
@@ -13,9 +14,26 @@ class PlayerHand(SingleCard):
     '''
     def __init__(self, playerName):
         self.playerName = playerName
-        self.__INTERN_handList = []
+        self.__INTERN_handListObj = []
+        self.__INTERN_handListInt = []
         self.__INTERN_cardsAmount = 0x00
         return None
+    #=======================================================================================
+
+    '''*************************************************************************************
+    @name       PrintCards  
+    @brief      Print all cards in collection
+    @param[in]  ...
+    @note       ...
+    @return     ...
+    '''
+    def PrintCards(self):
+        for card in self.__INTERN_handList:
+            try:
+                print(card)
+            except:
+                print("Wrong object!")
+
     #=======================================================================================
 
     '''*************************************************************************************
@@ -34,15 +52,31 @@ class PlayerHand(SingleCard):
     #=======================================================================================
         
     '''*************************************************************************************
-    @name       AddCard
-    @brief      Return last card on stack
+    @name       AddCardInt
+    @brief      Add card data code in int format
     @param[in]  ...
     @note       ...
     @return     ...
     '''
-    def AddCard(self, singleCardObj):
+    def AddCardInt(self, singleCardInt):
+        if type(singleCardInt) == int:
+            self.__INTERN_handListInt.append(singleCardInt)
+            self.__INTERN_cardsAmount = self.__INTERN_cardsAmount + 0x01
+            return True
+        else:
+            return False
+    #=======================================================================================
+        
+    '''*************************************************************************************
+    @name       AddCardObj
+    @brief      Add card data code in SingleCard object format
+    @param[in]  ...
+    @note       ...
+    @return     ...
+    '''
+    def AddCardObj(self, singleCardObj):
         if type(singleCardObj) == SingleCard:
-            self.__INTERN_handList.append(singleCardObj)
+            self.__INTERN_handListObj.append(singleCardObj)
             self.__INTERN_cardsAmount = self.__INTERN_cardsAmount + 0x01
             return True
         else:
