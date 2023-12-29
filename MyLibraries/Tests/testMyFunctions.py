@@ -1,20 +1,17 @@
-from card_game_war.card_class import *
-from card_game_war.deck_class import *
-from card_game_war.player_class import *
+from card_game_war.game_logic import *
 
+'''*************************************************************
+@name       CALL_test  
+@brief      Call for testing functon
+@param[in]  void 
+@note       ...
+@return     void 
+'''
 def CALL_test():
-    print("Begin od CALL_test()")
-    instDeck = DeckCards(nStacks= 1)
-    instDeck.TranslatedDeck()
-    
-    instPlayer1 = PlayerHand("Player1")
-
-    instPlayer1.AddCardObj(instDeck.GetCardObj())
-    instPlayer1.AddCardObj(instDeck.GetCardObj())
-    instPlayer1.AddCardObj(instDeck.GetCardObj())
-    instPlayer1.AddCardObj(instDeck.GetCardObj())
-
-    instPlayer1.PrintCards()    
+    GameLogic_GenerateDeck()
+    GameLogic_DealCard()
+    ShowPlayersCards()
+#===============================================================
 
 if (__name__ == "__main__"):
     CALL_test()

@@ -1,5 +1,4 @@
-import random
-
+from card_game_war.random_only_def import *
 from card_game_war.card_class import CardTranslate
 from card_game_war.card_class import SingleCard
 
@@ -30,7 +29,9 @@ class DeckCards(CardTranslate):
             n = n + 1
 
         self.listLenght = len(self.__INTERN_stackListInt)
-        self.index = self.listLenght 
+        self.currentLenght = self.listLenght 
+
+        self.deckIsSuffled = False
 
         return None
     #=======================================================================================
@@ -43,6 +44,7 @@ class DeckCards(CardTranslate):
     '''
     def SuffleDeck(self):
         self.instRandom.shuffle(self.__INTERN_stackListInt)
+        self.deckIsSuffled = True
         return None
     #=======================================================================================
     '''*************************************************************************************
@@ -70,10 +72,17 @@ class DeckCards(CardTranslate):
                 Then should be 1 less from start 
     @return     Value of a card 
     '''
-    def GetCardInt(self):
-        if self.index > 0x00:
-            self.index = self.index - 1
-            return self.__INTERN_stackListInt[self.index]
+    def GetCardInt(self, remove= False):
+        if self.currentLenght > 0x00:
+            if(remove == False):
+                self.currentLenght -= 1
+                return self.__INTERN_stackListInt[self.currentLenght]
+            elif(remove == True):
+                self.currentLenght -= 1
+                self.__INTERN_stackListObj.pop()
+                return self.__INTERN_stackListInt.pop()
+            else:
+                return 0x00
         else:
             return 0x00
     #=======================================================================================
@@ -85,9 +94,9 @@ class DeckCards(CardTranslate):
     @return     True / False - Depend if Object added 
     '''
     def PutCardInt(self, cardInt):
-        if (self.index < self.listLenght) and (type(cardInt) == int):
-            self.__INTERN_stackListInt[self.index] = cardInt
-            self.index = self.index + 1
+        if (self.currentLenght < self.listLenght) and (type(cardInt) == int):
+            self.__INTERN_stackListInt[self.currentLenght] = cardInt
+            self.currentLenght += 1
             return True
         else:
             return False
@@ -100,12 +109,20 @@ class DeckCards(CardTranslate):
                 Then should be 1 less from start
     @return     Object SingleCard from list
     '''
-    def GetCardObj(self):
-        if self.index > 0x00:
-            self.index = self.index - 1
-            return self.__INTERN_stackListObj[self.index]
+    def GetCardObj(self, remove= False):
+        if self.currentLenght > 0x00:
+            if(remove == False):
+                self.currentLenght -= 1
+                return self.__INTERN_stackListObj[self.currentLenght]
+            elif(remove == True):
+                self.currentLenght -= 1
+                self.__INTERN_stackListInt.pop()
+                return self.__INTERN_stackListObj.pop()
+            else:
+                return 0x00
         else:
             return 0x00
+
     #=======================================================================================
     '''*************************************************************************************
     @name       PutCardObj
@@ -115,9 +132,9 @@ class DeckCards(CardTranslate):
     @return     True / False - Depend if Object added 
     '''
     def PutCardObj(self, CardObj):
-        if (self.index < self.nMAX) and (type(CardObj) == SingleCard):
-            self.__INTERN_stackListObj[self.index] = CardObj
-            self.index = self.index + 1
+        if (self.currentLenght < self.nMAX) and (type(CardObj) == SingleCard):
+            self.__INTERN_stackListObj[self.currentLenght] = CardObj
+            self.indcurrentLenghtex += 1
             return True
         else:
             return False
@@ -166,9 +183,9 @@ class DeckCards(CardTranslate):
     @return     Next element for "for" iteration
     '''
     def __next__(self):
-        if self.index > 0x00:
-            self.index = self.index - 1
-            return self.__INTERN_stackListInt[self.index]
+        if self.currentLenght > 0x00:
+            self.currentLenght -= 1
+            return self.__INTERN_stackListInt[self.currentLenght]
         else:
             raise StopIteration
     #=======================================================================================
@@ -181,7 +198,7 @@ class DeckCards(CardTranslate):
     '''
     def GeneratorCardObj(self):
         while(self.index > 0x00):
-            self.index = self.index - 1
+            self.currentLenght -= 1
             yield self.__INTERN_stackListInt[self.index]
     #=======================================================================================
 #===========================================================================================
