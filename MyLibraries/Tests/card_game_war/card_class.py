@@ -53,9 +53,9 @@ class CardTranslate(CardRankAndSuit):
     #================================================================================================
     '''**********************************************************************************************
     @name       __INTERN_GetRank_val_from_str
-    @brief      ...
+    @brief      Static method that convert string to int 
     @param[in]  rank_str - Input string rank card
-    @note       ...
+    @note       This metod use dictionary from base staic class
     @return     rank_val - Value of a card rank
     '''
     @staticmethod
@@ -69,9 +69,9 @@ class CardTranslate(CardRankAndSuit):
     #================================================================================================
     '''**********************************************************************************************
     @name       __INTERN_GetRank_str_from_val
-    @brief      ...
+    @brief      Static method that convert int to string
     @param[in]  rank_val - Input value of card
-    @note       ...
+    @note       This metod use dictionary from base staic class
     @return     rank_str - String of a rank card
     '''
     @staticmethod

@@ -4,8 +4,7 @@ Player class
 from card_game_war.card_class import SingleCard
 
 class PlayerHand(SingleCard):
-
-    '''*************************************************************************************
+    '''
     @name       __init__
     @brief      Initialization of a Player class object
     @param[in]  playerName
@@ -21,11 +20,13 @@ class PlayerHand(SingleCard):
     '''*************************************************************************************
     @name       PrintCards  
     @brief      Print all cards in collection
-    @param[in]  ...
-    @note       ...
-    @return     ...
+    @param[in]  void 
+    @note       Print all cards inside player hand
+    @return     void 
     '''
     def PrintCards(self):
+        print("----------------------------------------", end='\n')
+        print("PLAYER: {} card list:".format(self.playerName), end= '\n')
         for card in self.__INTERN_handListObj:
             try:
                 print(card)
@@ -35,9 +36,9 @@ class PlayerHand(SingleCard):
     '''*************************************************************************************
     @name       RemoveCard
     @brief      Return last card on stack
-    @param[in]  ...
-    @note       ...
-    @return     ...
+    @param[in]  void 
+    @note       Zero when wrong object exist
+    @return     Object SingleCard pop from list.
     '''
     def PopLastCard(self):
         if self.__INTERN_cardsAmount > 0x00:
@@ -49,9 +50,9 @@ class PlayerHand(SingleCard):
     '''*************************************************************************************
     @name       AddCardObj
     @brief      Add card data code in SingleCard object format
-    @param[in]  ...
-    @note       ...
-    @return     ...
+    @param[in]  Object of SingleCard class instance
+    @note       List in ince aby instance of object SingleCard type
+    @return     Boolean value of state of operation.
     '''
     def AddCardObj(self, inSingleCard):
         if type(inSingleCard) == SingleCard:
