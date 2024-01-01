@@ -51,11 +51,28 @@ class PlayerHand(SingleCard):
     @note       Zero when wrong object exist
     @return     Object SingleCard pop from list.
     '''
+    def DrawFirstCardObj(self, remove= True):
+        if (self.__INTERN_cardsAmount > 0x00):
+            if(remove == True):
+                self.__INTERN_cardsAmount -= 0x01
+                return self.__INTERN_handListObj.pop(0)
+            else:
+                return self.__INTERN_handListObj[0]
+        else:
+            return 0x00
+    #=======================================================================================
+    '''*************************************************************************************
+    @name       DrawLastCardObj
+    @brief      Return last card on stack
+    @param[in]  remove - Drawn cards should be removed or not
+    @note       Zero when wrong object exist
+    @return     Object SingleCard pop from list.
+    '''
     def DrawLastCardObj(self, remove= True):
         if (self.__INTERN_cardsAmount > 0x00):
             if(remove == True):
                 self.__INTERN_cardsAmount -= 0x01
-                return self.__INTERN_handListObj.pop()
+                return self.__INTERN_handListObj.pop(-1)
             else:
                 return self.__INTERN_handListObj[-1]
         else:
@@ -85,7 +102,7 @@ class PlayerHand(SingleCard):
     @note       List in ince aby instance of object SingleCard type
     @return     Boolean value of state of operation.
     '''
-    def AddCardObj(self, inSingleCard):
+    def AddCardObjBack(self, inSingleCard):
         if type(inSingleCard) == SingleCard:
             self.__INTERN_handListObj.append(inSingleCard)
             self.__INTERN_cardsAmount += 0x01
@@ -116,7 +133,7 @@ class PlayerHand(SingleCard):
     @note       str( method __str__ )
     @return     string 
     '''
-    def GetCardStr(self, indexCard):
+    def GetCardStr(self, indexCard= 0):
         if (indexCard >= 0x00) and (indexCard < self.__INTERN_cardsAmount):
             return str(self.__INTERN_handListObj[indexCard])
         return "EMPTY"
@@ -128,20 +145,21 @@ class PlayerHand(SingleCard):
     @note       int( method __int__ )
     @return     int value of a card
     '''
-    def GetCardValue(self, indexCard):
+    def GetCardValue(self, indexCard= 0):
         if (indexCard >= 0x00) and (indexCard < self.__INTERN_cardsAmount):
             return int(self.__INTERN_handListObj[indexCard])
-        return 0x00
+        else:
+            return 0x00
     #=======================================================================================
     '''*************************************************************************************
     @name       WarPosibilityCheq
     @brief      Posibility to card war condition
     @param[in]  warAmount - war cards amount 
-    @note       Player should have some cards amout to attempt
-    @return     bool 
+    @note       Player should have some cards amout to war attempt
+    @return     bool - State of war attempt posibility
     '''
-    def WarPosibilityCheq(self, warAmount):
-        if(self.__INTERN_cardsAmount < warAmount):
+    def WarPosibilityCheq(self, warAmount= 5):
+        if(warAmount < self.__INTERN_cardsAmount):
             return True
         else:
             return False

@@ -151,7 +151,7 @@ class SingleCard():
     @return     String format for Print() funtion.
     '''
     def __str__(self):
-        return "| rank= {} | suit= {} |".format(self.rank_str, self.suit_str)
+        return "< {} of {} >".format(self.rank_str, self.suit_str)
     #================================================================================================
     '''**********************************************************************************************
     @name       __str__
@@ -161,7 +161,8 @@ class SingleCard():
     @return     Int value for card
     '''
     def __int__(self):
-        return self.suit_val + self.rank_val
+        #return self.suit_value + self.rank_value
+        return self.rank_value
     #================================================================================================
 #====================================================================================================
 
