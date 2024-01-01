@@ -35,9 +35,9 @@ class PlayerHand(SingleCard):
         print("----------------------------------------", end='\n')
     #=======================================================================================
     '''*************************************************************************************
-    @name       __str__  
+    @name       __str__
     @brief      Method for print() function
-    @param[in]  void 
+    @param[in]  void
     @note       Return specyfin string format for print funtion
     @return     str
     '''
@@ -72,7 +72,7 @@ class PlayerHand(SingleCard):
     def DrawLastCardObj_nAmount(self, nAmount, remove=True):
         retList = []
         if(nAmount <= self.__INTERN_cardsAmount) and (nAmount > 0):
-            for i in range(0, nAmount, 1):
+            for i in range(start= 0, stop= nAmount, step= 1):
                 retList.append(self.DrawLastCardObj(remove))
 
         return retList
@@ -134,14 +134,27 @@ class PlayerHand(SingleCard):
         return 0x00
     #=======================================================================================
     '''*************************************************************************************
+    @name       WarPosibilityCheq
+    @brief      Posibility to card war condition
+    @param[in]  warAmount - war cards amount 
+    @note       Player should have some cards amout to attempt
+    @return     bool 
+    '''
+    def WarPosibilityCheq(self, warAmount):
+        if(self.__INTERN_cardsAmount < warAmount):
+            return True
+        else:
+            return False
+    #=======================================================================================
+    '''*************************************************************************************
     @name       LostCheck
     @brief      Return state if player already lost 
-    @param[in]  indexCard - Index of a card element class
+    @param[in]  void 
     @note       If player lost then return true 
-    @return     string 
+    @return     bool
     '''
     def LostCheck(self):
-        if(self.__INTERN_cardsAmount == 0x00):
+        if(self.__INTERN_cardsAmount <= 0x00):
             return True
         else:
             return False
