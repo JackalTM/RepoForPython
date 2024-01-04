@@ -74,9 +74,9 @@ def Main():
     #for i in SearchFiles(iFilesPath, iStrSearch, iFileExten):
      #   print(i)
 
-     """
+    '''
      Generator jako parametr dla innego generatora
-     """
+    '''
     for i in GenCheckFile(GenFilesWithExtension(iFilesPath, iFileExten), 'AUG'):
         print(i)
     return None

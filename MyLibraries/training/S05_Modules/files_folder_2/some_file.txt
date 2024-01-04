@@ -1,0 +1,1 @@
+File directory: D:/01_Programistyczne_pliki/x07_WZ_Workspace_for_Python/MyLibraries/training/S05_Modules/files_folder/some_file.txt
