@@ -19,3 +19,19 @@ msg = "Subject: "+subject+'\n'+mesage
 smtp_object.sendmail(from_address, to_address, msg)
 
 smtp_object.quit()
+
+'''*************************************************************************************
+@name       ...
+@brief      ...
+@param[in]  ...
+@note       ... 
+@return     ...
+'''
+def CALL_Mail_send()->None:
+    pass
+#=======================================================================================
+
+if __name__ == "__main__":
+    pass
+else:
+    pass

@@ -1,27 +1,35 @@
 import io
+import os
 import zipfile
 from shutil import make_archive as Shutil_make_archive
 from shutil import unpack_archive as Shutil_unpack_archive
 '''*************************************************************************************
 @name       FileLocations
-@brief      ...
-@note       ... 
+@brief      File location static class
+@note       Contain static methods and constants
 '''
 class FileLocations:
-    FULL_DIR_TOZIP = "D:/01_Programistyczne_pliki/x07_WZ_Workspace_for_Python/MyLibraries/training/S05_Modules/zip_unzip/to_zip"
-    FULL_DIR_UNZIP = "D:/01_Programistyczne_pliki/x07_WZ_Workspace_for_Python/MyLibraries/training/S05_Modules/zip_unzip/to_unzip"
-
-    MAIN_DIR = "D:/01_Programistyczne_pliki/x07_WZ_Workspace_for_Python"
+    mainDir = os.getcwd()
 
     LOC_DIR_TOZIP = "MyLibraries/training/S05_Modules/zip_unzip/to_zip"
     LOC_DIR_UNZIP = "MyLibraries/training/S05_Modules/zip_unzip/to_unzip"
 
     @staticmethod
+    def SetCurrentPath(somePath : str)->None:
+        return None
+
+    @staticmethod
     def MakeFullDir_TOZIP(fileName : str) -> str:
-        return (FileLocations.FULL_DIR_TOZIP + "/" + fileName)
+        fullPath = FileLocations.mainDir + '/'
+        fullPath = fullPath + FileLocations.LOC_DIR_TOZIP + '/'
+        fullPath = fullPath + fileName
+        return fullPath
     @staticmethod
     def MakeFullDir_UNZIP(fileName : str) -> str:
-        return (FileLocations.FULL_DIR_UNZIP + "/" + fileName)
+        fullPath = FileLocations.mainDir + '/'
+        fullPath = fullPath + FileLocations.LOC_DIR_UNZIP + '/'
+        fullPath = fullPath + fileName
+        return fullPath
     
     @staticmethod
     def MakeLocDir_TOZIP(fileName : str) -> str:
@@ -31,12 +39,12 @@ class FileLocations:
         return (FileLocations.LOC_DIR_UNZIP + "/" + fileName)
 #===========================================================================================
     
-'''*************************************************************************************
+'''*****************************************************************************************
 @name       FileOperation
 @brief      Operation on opened file 
-@param[in]  OpenedFile - Opened text file 
+@param[in]  io.TextIOWrapper : OpenedFile - Opened text file 
 @note       This function is wraped
-@return     None 
+@return     io.TextIOWrapper : OpenedFile 
 '''
 def FileOperation(OpenedFile : io.TextIOWrapper) -> io.TextIOWrapper:
     print("FILE IS OPENED !!!!!")
@@ -56,7 +64,7 @@ def FileOperation(OpenedFile : io.TextIOWrapper) -> io.TextIOWrapper:
 def PrintFileContent(OpenedFile : io.TextIOWrapper) -> None:
     for line in OpenedFile:
         print(line, end= '')
-    return OpenedFile
+    return None
 #=======================================================================================
 
 '''*************************************************************************************
@@ -107,30 +115,61 @@ def CALL_open_modyfi() -> None:
     return None
 #=======================================================================================
 
-#=======================================================================================
-def CALL_zip_test() -> None:
+"""*************************************************************************************
+file        - File location to comprese object full direction
+mode        - ('r', 'w', 'x', 'a')
+instZipFile - zipfile.ZipFile(file= file, mode= mode)
+
+filename        - Fille full name to comprese
+compress_type   - zipfile.ZIP_DEFLATED
+instZipFile.write(filename= filename, compress_type= compress_type)
+"""
+def CALL_zipfile_ZipFile_write() -> None:
     """
     File extract problem
     Entire location is compresed
     After extraction whole directory is extracted
     """
-    destinationFile = FileLocations.MakeFullDir_TOZIP("zip_test.zip")
+    file        = FileLocations.MakeLocDir_UNZIP("new_zipfile.zip")
+    mode        = "w"
+    instZipFile = zipfile.ZipFile(file= file, mode= mode)
 
-    sourceFile1 = FileLocations.MakeFullDir_TOZIP("test.txt")
-    sourceFile2 = FileLocations.MakeFullDir_TOZIP("test1.txt")
-    sourceFile3 = FileLocations.MakeFullDir_TOZIP("test2.txt")
+    fileName1 = FileLocations.MakeLocDir_TOZIP("test.txt")
+    fileName2 = FileLocations.MakeLocDir_TOZIP("test1.txt")
+    fileName3 = FileLocations.MakeLocDir_TOZIP("test2.txt")
+    instZipFile.write(filename= fileName1, compress_type= zipfile.ZIP_DEFLATED)
+    instZipFile.write(filename= fileName2, compress_type= zipfile.ZIP_DEFLATED)
+    instZipFile.write(filename= fileName3, compress_type= zipfile.ZIP_DEFLATED)
 
-    print("Destination file: {}".format(destinationFile))
-    print("Inclue file:      {}".format(sourceFile1))
-    print("Inclue file:      {}".format(sourceFile2))
-    print("Inclue file:      {}".format(sourceFile3))
+    instZipFile.close()
 
-    compresedFile = zipfile.ZipFile(file= destinationFile, mode= 'w')
-    compresedFile.write(filename= sourceFile1, compress_type= zipfile.ZIP_DEFLATED)
-    compresedFile.write(filename= sourceFile2, compress_type= zipfile.ZIP_DEFLATED)
-    compresedFile.write(filename= sourceFile3, compress_type= zipfile.ZIP_DEFLATED)
+    print("Comprese files Method test:")
+    print("instZipFile - zipfile.ZipFile(file= file, mode= mode)")
+    print("instZipFile.extractall(path= path)")
 
-    compresedFile.close()
+    return None
+#=======================================================================================
+
+"""*************************************************************************************
+file        - File location to comprese object full direction
+mode        - ('r', 'w', 'x', 'a')
+instZipFile - zipfile.ZipFile(file= file, mode= mode)
+
+path        - Path to unpact file
+instZipFile.extractall(path= path)
+"""
+def CALL_zipfile_ZipFile_extractall() -> None:
+
+    file    = FileLocations.MakeLocDir_UNZIP("new_zipfile.zip")
+    mode    = 'r'
+    instZipFile  = zipfile.ZipFile(file= file, mode= mode)
+
+    path    = FileLocations.LOC_DIR_UNZIP
+    instZipFile.extractall(path= path)
+
+    print("Extract files Method test:")
+    print("instZipFile - zipfile.ZipFile(file= file, mode= mode)")
+    print("instZipFile.extractall(path= path)")
 
     return None
 #=======================================================================================
@@ -140,10 +179,11 @@ base_name   - Path where compresed file will be placed
 format      - File format example .zip 
 root_dir    - Path to folder that will be compresed
 base_dir    - Directory widhin direcory 
+Tested OK
 """
 def CALL_Shutil_make_archive() -> None:
 
-    base_name   = FileLocations.MakeLocDir_UNZIP("newZIP")
+    base_name   = FileLocations.MakeLocDir_UNZIP("Shutil_make_archive_ZIP")
     format      = "zip"
     root_dir    = FileLocations.FULL_DIR_TOZIP
     base_dir    = ""
@@ -158,10 +198,11 @@ def CALL_Shutil_make_archive() -> None:
 filename    - Full name to file with direction
 extract_dir - Direction where extract file
 format      - Compres format
+Tested OK
 """
 def CALL_Shutil_unpack_archive() -> None:
 
-    filename    = FileLocations.MakeLocDir_UNZIP("newZIP.zip")
+    filename    = FileLocations.MakeLocDir_UNZIP("Shutil_make_archive_ZIP.zip")
     extract_dir = FileLocations.LOC_DIR_UNZIP
     format      = "zip"
 
@@ -170,22 +211,8 @@ def CALL_Shutil_unpack_archive() -> None:
     return None
 #=======================================================================================
 
-#=======================================================================================
-def CALL_unzip_test() -> None:
-
-    sourceFile = FileLocations.MakeFullDir_TOZIP("zip_test.zip")
-    destinationFolder = FileLocations.MAIN_DIR_UNZIP
-
-    print("Source file: {}".format(sourceFile))
-    print("Destination: {}".format(destinationFolder))
-
-    zipObj = zipfile.ZipFile(file= sourceFile, mode= 'r')
-    zipObj.extractall(path= destinationFolder)
-
-    return None
-#=======================================================================================
-
 if(__name__) == ("__main__"):
-    CALL_Shutil_unpack_archive()
+    CALL_zipfile_ZipFile_write()
+    CALL_zipfile_ZipFile_extractall()
 else:
     pass

@@ -1,5 +1,6 @@
 import re as RegEx
-
+import io
+import os
 '''*************************************************************************************
 @name       FileLocations
 @brief      ...
@@ -12,6 +13,20 @@ class FileLocations:
     @staticmethod
     def MakeFullDir(fileName) -> str:
         return (FileLocations.MAIN_DIR + fileName)
+    
+def SetCurrentOSPath(toPath : str):
+    currentCD = os.getcwd()
+    print("CD before: \t{}".format(currentCD))
+    try:
+        currentCD = currentCD + "/" + toPath
+        os.chdir(toPath)
+    except:
+        print("Wrong PATH!")
+        return None
+
+    print("CD after: \t{}".format(os.getcwd()))
+
+    return None
 #===========================================================================================
     
 '''*****************************************************************************************
@@ -21,7 +36,7 @@ class FileLocations:
 @note       Function to wrap
 @return     None 
 '''
-def OpenCloseFile(fullName, RE_TestMethods) -> None:
+def OpenCloseFile(fullName, RE_TestMethods : function) -> None:
     try:
       OpenedFile = open(file= fullName, mode= 'r')
       print("- File opened.")
@@ -45,7 +60,7 @@ def OpenCloseFile(fullName, RE_TestMethods) -> None:
 @note       ... 
 @return     None 
 '''
-def RE_TestMethods_search(OpenedFile) -> None:
+def RE_TestMethods_search(OpenedFile : io.TextIOWrapper) -> None:
     toFind = "48"
     lineNum = 0
     for line in OpenedFile:
@@ -63,7 +78,7 @@ def RE_TestMethods_search(OpenedFile) -> None:
 @note       ... 
 @return     None 
 '''
-def RE_TestMethods_findall(OpenedFile) -> None:
+def RE_TestMethods_findall(OpenedFile : io.TextIOWrapper) -> None:
     toFind = "48"
     lineNum = 0
     for line in OpenedFile:
@@ -84,7 +99,7 @@ def RE_TestMethods_findall(OpenedFile) -> None:
 @note       ... 
 @return     None 
 '''
-def RE_TestMethod_pattern_qualifiers(OpenedFile) -> None:
+def RE_TestMethod_pattern_qualifiers(OpenedFile : io.TextIOWrapper)->None:
   rePattern = "\d\d\d-\d\d\d-\d\d\d"
   lineNum = 0
   print("qualifier= {}".format(rePattern))
@@ -103,7 +118,7 @@ def RE_TestMethod_pattern_qualifiers(OpenedFile) -> None:
 @note       ... 
 @return     None 
 '''
-def RE_TestMethod_pattern_quantifiers(OpenedFile) -> None:
+def RE_TestMethod_pattern_quantifiers(OpenedFile : io.TextIOWrapper) -> None:
   rePattern = r"\d{2} \d{3}-\d{3}-\d{3}"
   lineNum = 0
   print("quantifier= {}".format(rePattern))
@@ -122,7 +137,7 @@ def RE_TestMethod_pattern_quantifiers(OpenedFile) -> None:
 @note       .group() can be indexed <1, n>
 @return     None 
 '''
-def RE_TestMethod_pattern_or_wildcard(OpenedFile) -> None:
+def RE_TestMethod_pattern_or_wildcard(OpenedFile : io.TextIOWrapper) -> None:
   compiledPattern = RegEx.compile(r".{5}\.txt")
   lineNum = 0
   print("Search using RegEx.compile()")
@@ -146,7 +161,7 @@ def RE_TestMethod_pattern_or_wildcard(OpenedFile) -> None:
 @note       Excluded part are remove and rest is inside list 
 @return     None 
 '''
-def RE_TestMethod_pattern_exclude(OpenedFile) -> None:
+def RE_TestMethod_pattern_exclude(OpenedFile : io.TextIOWrapper) -> None:
   compiledPattern = RegEx.compile(r"[^\d]+")
   compiledPattern = RegEx.compile(r"[^\d ]+")
   lineNum = 0
@@ -172,7 +187,7 @@ def RE_TestMethod_pattern_exclude(OpenedFile) -> None:
 @note       Excluded part are remove and rest is inside list 
 @return     None 
 '''
-def RE_TestMethod_pattern_with_mark_inside(OpenedFile) -> None:
+def RE_TestMethod_pattern_with_mark_inside(OpenedFile : io.TextIOWrapper) -> None:
   compiledPattern = RegEx.compile(r"[\w]+\.[\w]+")
   # [\w]+ is looking for group alpha numeric. It will find group of letters word for example.
   # \. Threat dot " . " as dot. 

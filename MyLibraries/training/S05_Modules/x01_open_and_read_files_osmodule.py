@@ -1,10 +1,23 @@
 '''*************************************************************************************
-@name       ...
-@brief      ...
-@param[in]  ...
+@name       SetCurrentOSPath
+@brief      Set current directory to demand one
+@param[in]  toPath - Demand directory 
 @note       ... 
-@return     ...
+@return     None
 '''
+def SetCurrentOSPath(toPath : str):
+    currentCD = os.getcwd()
+    print("CD before: \t{}".format(currentCD))
+    try:
+        currentCD = currentCD + "/" + toPath
+        os.chdir(toPath)
+    except:
+        print("Wrong PATH!")
+        return None
+
+    print("CD after: \t{}".format(os.getcwd()))
+
+    return None
 #=======================================================================================
 
 '''*************************************************************************************
