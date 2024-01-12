@@ -11,7 +11,7 @@ class PlayerHand(SingleCard):
     @note       ...
     @return     None
     '''
-    def __init__(self, playerName):
+    def __init__(self, playerName : str):
         self.playerName = playerName
         self.__INTERN_handListObj = []
         self.__INTERN_cardsAmount = 0x00
@@ -24,7 +24,7 @@ class PlayerHand(SingleCard):
     @note       Print all cards inside player hand
     @return     void 
     '''
-    def PrintAllCards(self):
+    def PrintAllCards(self)->None:
         print("----------------------------------------", end='\n')
         print("PLAYER: {} card list:".format(self.playerName), end= '\n')
         for card in self.__INTERN_handListObj:
@@ -41,7 +41,7 @@ class PlayerHand(SingleCard):
     @note       Return specyfin string format for print funtion
     @return     str
     '''
-    def __str__(self):
+    def __str__(self)->str:
         return "PLAYER: {} has {} amount of cards".format(self.playerName, self.__INTERN_cardsAmount)
     #=======================================================================================
     '''*************************************************************************************
@@ -51,7 +51,7 @@ class PlayerHand(SingleCard):
     @note       Zero when wrong object exist
     @return     Object SingleCard pop from list.
     '''
-    def DrawFirstCardObj(self, remove= True):
+    def DrawFirstCardObj(self, remove= True)->SingleCard:
         if (self.__INTERN_cardsAmount > 0x00):
             if(remove == True):
                 self.__INTERN_cardsAmount -= 0x01
@@ -68,7 +68,7 @@ class PlayerHand(SingleCard):
     @note       Zero when wrong object exist
     @return     Object SingleCard pop from list.
     '''
-    def DrawLastCardObj(self, remove= True):
+    def DrawLastCardObj(self, remove= True)->SingleCard:
         if (self.__INTERN_cardsAmount > 0x00):
             if(remove == True):
                 self.__INTERN_cardsAmount -= 0x01
@@ -86,7 +86,7 @@ class PlayerHand(SingleCard):
     @note       This method use self.DrawLastCardObj()
     @return     List that contain cards from player hand
     '''
-    def DrawLastCardObj_nAmount(self, nAmount, remove=True):
+    def DrawLastCardObj_nAmount(self, nAmount, remove=True)->list:
         retList = []
         if(nAmount <= self.__INTERN_cardsAmount) and (nAmount > 0):
             for i in range(start= 0, stop= nAmount, step= 1):
@@ -102,7 +102,7 @@ class PlayerHand(SingleCard):
     @note       List in ince aby instance of object SingleCard type
     @return     Boolean value of state of operation.
     '''
-    def AddCardObjBack(self, inSingleCard):
+    def AddCardObjBack(self, inSingleCard : SingleCard)->bool:
         if type(inSingleCard) == SingleCard:
             self.__INTERN_handListObj.append(inSingleCard)
             self.__INTERN_cardsAmount += 0x01
@@ -117,7 +117,7 @@ class PlayerHand(SingleCard):
     @note       This method is using  add single card method
     @return     Boolean value of state of operation.
     '''
-    def AddCardObj_nAmount(self, CardObjList):
+    def AddCardObj_nAmount(self, CardObjList : list)->bool:
         if type(CardObjList) == list:
             for singleCardObject in CardObjList:
                 self.AddCardObj(singleCardObject)
@@ -133,7 +133,7 @@ class PlayerHand(SingleCard):
     @note       str( method __str__ )
     @return     string 
     '''
-    def GetCardStr(self, indexCard= 0):
+    def GetCardStr(self, indexCard= 0)->str:
         if (indexCard >= 0x00) and (indexCard < self.__INTERN_cardsAmount):
             return str(self.__INTERN_handListObj[indexCard])
         return "EMPTY"
@@ -145,7 +145,7 @@ class PlayerHand(SingleCard):
     @note       int( method __int__ )
     @return     int value of a card
     '''
-    def GetCardValue(self, indexCard= 0):
+    def GetCardValue(self, indexCard= 0)->int:
         if (indexCard >= 0x00) and (indexCard < self.__INTERN_cardsAmount):
             return int(self.__INTERN_handListObj[indexCard])
         else:
@@ -158,7 +158,7 @@ class PlayerHand(SingleCard):
     @note       Player should have some cards amout to war attempt
     @return     bool - State of war attempt posibility
     '''
-    def WarPosibilityCheq(self, warAmount= 5):
+    def WarPosibilityCheq(self, warAmount= 5)->bool:
         if(warAmount < self.__INTERN_cardsAmount):
             return True
         else:
@@ -171,7 +171,7 @@ class PlayerHand(SingleCard):
     @note       If player lost then return true 
     @return     bool
     '''
-    def LostCheck(self):
+    def LostCheck(self)->bool:
         if(self.__INTERN_cardsAmount <= 0x00):
             return True
         else:

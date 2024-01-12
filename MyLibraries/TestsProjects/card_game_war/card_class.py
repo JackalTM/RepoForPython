@@ -41,7 +41,7 @@ class CardTranslate(CardRankAndSuit):
     @return     (rank_value, suit_value, rank_str, suit_str)
     '''
     @staticmethod
-    def TransleteCard(deck_value):
+    def TransleteCard(deck_value : int) -> tuple:
 
         rank_value = (deck_value & CardRankAndSuit.BIT_MASK_RANK)
         suit_value = (deck_value & CardRankAndSuit.BIT_MASK_SUIT)
@@ -59,7 +59,7 @@ class CardTranslate(CardRankAndSuit):
     @return     rank_val - Value of a card rank
     '''
     @staticmethod
-    def __INTERN_GetRank_val_from_str(rank_str):
+    def __INTERN_GetRank_val_from_str(rank_str : str) -> int:
         try:
             rank_val = CardRankAndSuit.CARD_RANK_VAL_FROM_STR[rank_str]
         except:
@@ -75,7 +75,7 @@ class CardTranslate(CardRankAndSuit):
     @return     rank_str - String of a rank card
     '''
     @staticmethod
-    def __INTERN_GetRank_str_from_val(rank_val):
+    def __INTERN_GetRank_str_from_val(rank_val : int):
         try:
             rank_str = CardRankAndSuit.CARD_RANK_STR_FROM_VAL[rank_val]
         except:
@@ -91,7 +91,7 @@ class CardTranslate(CardRankAndSuit):
     @return     suit_val - Value of a suit card
     '''
     @staticmethod
-    def __INTERN_GetSuit_val_from_str(suit_str):
+    def __INTERN_GetSuit_val_from_str(suit_str : str) -> int:
         try:
             suit_val = CardRankAndSuit.CARD_SUIT_VAL_FROM_STR[suit_str]
         except:
@@ -107,7 +107,7 @@ class CardTranslate(CardRankAndSuit):
     @return     suit_str - String of a suit card
     '''
     @staticmethod
-    def __INTERN_GetSuit_str_from_val(suit_val):
+    def __INTERN_GetSuit_str_from_val(suit_val : int) -> str:
         try:
             suit_str = CardRankAndSuit.CARD_SUIT_STR_FROM_VAL[suit_val]
         except:
@@ -133,7 +133,7 @@ class SingleCard():
     @note       ...
     @return     None
     '''
-    def __init__(self, rank_value, suit_value, rank_str, suit_str):
+    def __init__(self, rank_value : int, suit_value : int, rank_str : str, suit_str : str) -> None:
 
         self.rank_value = rank_value
         self.suit_value = suit_value
@@ -150,7 +150,7 @@ class SingleCard():
     @note       ...
     @return     String format for Print() funtion.
     '''
-    def __str__(self):
+    def __str__(self) -> str:
         return "< {} of {} >".format(self.rank_str, self.suit_str)
     #================================================================================================
     '''**********************************************************************************************
@@ -160,7 +160,7 @@ class SingleCard():
     @note       ...
     @return     Int value for card
     '''
-    def __int__(self):
+    def __int__(self) -> int:
         #return self.suit_value + self.rank_value
         return self.rank_value
     #================================================================================================

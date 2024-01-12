@@ -15,7 +15,7 @@ class DeckCards(CardTranslate):
     @note       ...
     @return     ...
     '''
-    def __init__(self, nStacks):
+    def __init__(self, nStacks : int):
         self.instRandom = random.Random()
 
         self.__INTERN_stackListInt = []
@@ -72,7 +72,7 @@ class DeckCards(CardTranslate):
                 Then should be 1 less from start 
     @return     Value of a card 
     '''
-    def GetCardInt(self, remove= False):
+    def GetCardInt(self, remove= False) -> bool:
         if self.currentLenght > 0x00:
             if(remove == False):
                 self.currentLenght -= 1
@@ -93,7 +93,7 @@ class DeckCards(CardTranslate):
     @note       ...
     @return     True / False - Depend if Object added 
     '''
-    def PutCardInt(self, cardInt):
+    def PutCardInt(self, cardInt : int) -> bool:
         if (self.currentLenght < self.listLenght) and (type(cardInt) == int):
             self.__INTERN_stackListInt[self.currentLenght] = cardInt
             self.currentLenght += 1
@@ -109,7 +109,7 @@ class DeckCards(CardTranslate):
                 Then should be 1 less from start
     @return     Object SingleCard from list
     '''
-    def GetCardObj(self, remove= False):
+    def GetCardObj(self, remove : bool= False) :
         if self.currentLenght > 0x00:
             if(remove == False):
                 self.currentLenght -= 1
@@ -131,7 +131,7 @@ class DeckCards(CardTranslate):
     @note       ...
     @return     True / False - Depend if Object added 
     '''
-    def PutCardObj(self, CardObj):
+    def PutCardObj(self, CardObj : SingleCard):
         if (self.currentLenght < self.nMAX) and (type(CardObj) == SingleCard):
             self.__INTERN_stackListObj[self.currentLenght] = CardObj
             self.indcurrentLenghtex += 1
@@ -146,7 +146,7 @@ class DeckCards(CardTranslate):
     @note       ...
     @return     None
     '''
-    def PrintListInt(self):
+    def PrintListInt(self) ->None:
         print("Card value deck content:", end= '\n')
         for card in self.__INTERN_stackListInt:
             print("- {}".format(hex(card)))
@@ -159,7 +159,7 @@ class DeckCards(CardTranslate):
     @note       ...
     @return     None
     '''
-    def PrintListObj(self):
+    def PrintListObj(self) -> None:
         print("Card object deck content:", end= '\n')
         for card in self.__INTERN_stackListObj:
             print(card)
