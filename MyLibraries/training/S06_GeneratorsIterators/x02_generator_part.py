@@ -13,13 +13,13 @@ Internaly generatorts are using next() and when stop iteration wrror ocured iter
 '''
 
 '''*************************************************************************************
-@name       ...
+@name       CreateCubesList
 @brief      List is cerated upfront
 @param[in]  ...
 @note       With very long list lot of memory is taken
 @return     ...
 '''
-def CreateCubesList(n):
+def CreateCubesList(n : int)->list:
     listResoult = []
     for i in range(0, n, 1):
         listResoult.appent(n**3)
@@ -27,13 +27,13 @@ def CreateCubesList(n):
 #=======================================================================================
         
 '''*************************************************************************************
-@name       ...
+@name       CreateCubesGenerator
 @brief      More memory efficient
 @param[in]  ...
 @note       With very hight number aonly one numer at time is returned. Generator can be castet to a list 
 @return     yield - One value at a time is returned
 '''
-def CreateCubesGenerator(n):
+def CreateCubesGenerator(n : int)->int:
     for i in range(0, n, 1):
         yield (n**3)
 #=======================================================================================
@@ -45,7 +45,7 @@ def CreateCubesGenerator(n):
 @note       ... 
 @return     yield - One value at a time is returned
 '''
-def GenFib_v1(n):
+def GenFib_v1(n : int)->tuple:
     a = 0
     b = 1
     for i in range(0, n, 1):
@@ -59,14 +59,14 @@ def GenFib_v1(n):
 @note       ... 
 @return     yield - One value at a time is returned
 '''
-def GenFib_v2(n):
+def GenFib_v2(n)->tuple:
     a = 0
     b = 1
     for i in range(0, n, 1):
         (a, b) = (b, a + b)
         yield a
 #=======================================================================================
-def CALL_Generator():
+def CALL_Generator()->None:
     FIBON_MAX = 7
 
     print("V1: Fobinachi sequance is generated: ")
@@ -89,11 +89,11 @@ def CALL_Generator():
 @note       ... 
 @return     ...
 '''
-def GenSimple(n):
+def GenSimple(n : int)->int:
     for i in range(0, n, 1):
         yield i
 #=======================================================================================
-def CALL_SimpleGen1():
+def CALL_SimpleGen1()->None:
     # In this case StopIterationError will occure
     n = 0
     MAX_GEN = 9
@@ -104,7 +104,7 @@ def CALL_SimpleGen1():
         n += 1
     return None
 #=======================================================================================
-def CALL_SimpleGen2():
+def CALL_SimpleGen2()->None:
     # In this case StopIterationError will occure
     n = 0
     MAX_GEN = 9
@@ -118,7 +118,7 @@ def CALL_SimpleGen2():
         n += 1
     return None
 #=======================================================================================
-def CALL_SimpleGen3():
+def CALL_SimpleGen3()->None:
     # In this case StopIterationError will occure
     someString = "password"
     instStrIter = iter(someString)
@@ -135,7 +135,7 @@ def CALL_SimpleGen3():
 
     return None
 #=======================================================================================
-def CALL_GeneratorComperation():
+def CALL_GeneratorComperation()->None:
     # This a generator comperation
     # Similar topis like list comperation
     # List is turned into generator comperation
@@ -159,7 +159,13 @@ def CALL_GeneratorComperation():
 @return     ...
 '''
 import random
-def GenRandomNum(nLow, nHigh, nAmount):
+def GenRandomNum(nLow : int, nHigh : int, nAmount : int)->int:
     for i in range(0, nAmount, 1):
         yield random.randint(nLow, nHigh)
 #=======================================================================================
+        
+
+if (__name__ == "__main__"):
+    pass
+else:
+    pass

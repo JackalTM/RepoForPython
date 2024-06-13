@@ -1,4 +1,11 @@
-def ClculateMean(some_list):
+'''*************************************************************************************
+@name       ClculateMean
+@brief      ...
+@param[in]  some_list - Input lsit with integers
+@note       ... 
+@return     int - mean value calculated from list
+'''
+def ClculateMean(some_list : list)->int:
     if(type(some_list) == list):
         tSum = 0
         n = 0
@@ -9,18 +16,33 @@ def ClculateMean(some_list):
 
     elif(type(some_list) == int):
         return some_list
+#=======================================================================================
     
-
-def ConvertToInt(input_data):
+'''*************************************************************************************
+@name       ConvertToInt
+@brief      ...
+@param[in]  input_data - int
+@note       ... 
+@return     int - Data converted to int
+'''
+def ConvertToInt(input_data)->int:
     try:
         i = int(input_data)
     except:
         i = -1
     finally:
         return i
-    
+#=======================================================================================
 
-def OpenFile(fullDirectory, mode):
+'''*************************************************************************************
+@name       OpenFile
+@brief      ...
+@param[in]  fullDirectory - String to file directory
+@param[in]  mode - Read or write mode 
+@note       ... 
+@return     str - String content from file 
+'''
+def OpenFile(fullDirectory : str, mode : str)->str:
     some_text = " "
     try:
         file = open(fullDirectory, mode)
@@ -31,15 +53,29 @@ def OpenFile(fullDirectory, mode):
         print("OSError!")
     finally:
         return some_text
-    
-def WriteFile(fullDirectory, mode, some_text):
+#=======================================================================================
+
+'''*************************************************************************************
+@name       WriteFile
+@brief      ...
+@param[in]  fullDirectory - String to file directory
+@param[in]  mode - Read or write mode 
+@param[in]  some_text - Content to add into file
+@note       ... 
+@return     int  - state of operation
+'''
+def WriteFile(fullDirectory : str, mode : str, some_text : str)->int:
     try:
         file = open(fullDirectory, mode)
         file.write(some_text)
+        err = 0x00
     except TypeError:
         print("TypeError!")
+        err = 0x11
     except OSError:
         print("OSError!")
+        err = 0x22
     finally:
-        return
+        return err
+#=======================================================================================
     
