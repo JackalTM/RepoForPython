@@ -189,3 +189,65 @@ def CallListVsTuplets():
 
 """
 #=======================================================================================================================================
+
+'''*************************************************************************************************************************************
+@name       Call_ShortConditionalInstructions
+@brief      Some more methods for dictionaries
+@param[in]  ...
+@note       ... 
+@return     ...
+'''
+def Call_ShortConditionalInstructions():
+
+    bonusGranted = True
+
+    price = 0xFF
+    bonus = 0x20
+    if(bonusGranted):
+        price = price - bonus
+
+    print("Normal if method, print = {}".format(price))
+
+    price = 0xFF
+    bonus = 0x20
+    price -= bonus if bonusGranted else 0
+
+    print("Short method if method, print = {}".format(price))
+
+    return None
+#=======================================================================================================================================
+
+'''*************************************************************************************************************************************
+@name       Call_ElseInLoops
+@brief      Some more methods for dictionaries
+@param[in]  ...
+@note       ... 
+@return     ...
+'''
+def Call_ElseInLoops():
+
+    instructions = ["Mukade Choro", "Centichor", "Elder Celipendre", "Hero Blast", "Serious punch", True]
+    instructionsApproved = []
+
+    for instr in instructions:
+        if(instr == True):
+            break
+
+        print("Add instr: {}".format(instr))
+        instructionsApproved.append(instr)
+
+    else:
+        print("For break: ")
+
+    print("Instr taken: ", instructionsApproved)
+
+    return None
+#=======================================================================================================================================
+
+
+#=======================================================================================================================================
+if (__name__ == "__main__"):
+    Call_ElseInLoops()
+else:
+    pass
+#=======================================================================================================================================

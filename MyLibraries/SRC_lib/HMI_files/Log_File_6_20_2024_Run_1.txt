@@ -1,0 +1,41 @@
+Project Data: GM7159/01-1100 OP2100.01 DryRun|Auto/No Fault|Cycle Complete
+Process Data 1: 26, C 
+Process Data 2: 26, C 
+Process Data 3: 0, C 
+Process Data 4: 0, C 
+20.6.2024 7:4:12 Start Of Cycling, Cycle Nr.0 , Processed Time: 0h0min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:4:12 Error-free-Cycle finished, Cycle Nr.0 , Processed Time: 0h0min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:5:43 Error-free-Cycle finished, Cycle Nr.1 , Processed Time: 0h1min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:7:17 Error-free-Cycle finished, Cycle Nr.2 , Processed Time: 0h3min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:8:50 Error-free-Cycle finished, Cycle Nr.3 , Processed Time: 0h4min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:10:21 Error-free-Cycle finished, Cycle Nr.4 , Processed Time: 0h6min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:11:55 Error-free-Cycle finished, Cycle Nr.5 , Processed Time: 0h7min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:13:26 Error-free-Cycle finished, Cycle Nr.6 , Processed Time: 0h9min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:14:59 Error-free-Cycle finished, Cycle Nr.7 , Processed Time: 0h10min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:16:31 Error-free-Cycle finished, Cycle Nr.8 , Processed Time: 0h12min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:18:5 Error-free-Cycle finished, Cycle Nr.9 , Processed Time: 0h14min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:19:51 Error-free-Cycle finished, Cycle Nr.10 , Processed Time: 0h15min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:21:25 Error-free-Cycle finished, Cycle Nr.11 , Processed Time: 0h17min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:22:55 Error-free-Cycle finished, Cycle Nr.12 , Processed Time: 0h18min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:24:27 Error-free-Cycle finished, Cycle Nr.13 , Processed Time: 0h20min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:25:59 Error-free-Cycle finished, Cycle Nr.14 , Processed Time: 0h21min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:27:32 Error-free-Cycle finished, Cycle Nr.15 , Processed Time: 0h23min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:29:3 Error-free-Cycle finished, Cycle Nr.16 , Processed Time: 0h25min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:30:35 Error-free-Cycle finished, Cycle Nr.17 , Processed Time: 0h26min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:32:9 Error-free-Cycle finished, Cycle Nr.18 , Processed Time: 0h28min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:33:42 Error-free-Cycle finished, Cycle Nr.19 , Processed Time: 0h29min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:35:14 Error-free-Cycle finished, Cycle Nr.20 , Processed Time: 0h31min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:36:44 Error-free-Cycle finished, Cycle Nr.21 , Processed Time: 0h32min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:38:18 Error-free-Cycle finished, Cycle Nr.22 , Processed Time: 0h34min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:39:49 Error-free-Cycle finished, Cycle Nr.23 , Processed Time: 0h35min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:41:21 Error-free-Cycle finished, Cycle Nr.24 , Processed Time: 0h37min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:42:52 Error-free-Cycle finished, Cycle Nr.25 , Processed Time: 0h38min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:44:25 Error-free-Cycle finished, Cycle Nr.26 , Processed Time: 0h40min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:45:58 Error-free-Cycle finished, Cycle Nr.27 , Processed Time: 0h41min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:47:27 Error-free-Cycle finished, Cycle Nr.28 , Processed Time: 0h43min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:49:1 Error-free-Cycle finished, Cycle Nr.29 , Processed Time: 0h45min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:50:32 Error-free-Cycle finished, Cycle Nr.30 , Processed Time: 0h46min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:52:3 Error-free-Cycle finished, Cycle Nr.31 , Processed Time: 0h48min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 7:52:38 Cycle Faulted, Cycle Nr.32 , Processed Time: 0h48min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 8:17:53 Start Of Cycling, Cycle Nr.32 , Processed Time: 1h13min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
+20.6.2024 8:18:39 Error-free-Cycle finished, Cycle Nr.32 , Processed Time: 1h14min , pData[1]: 26 , pData[2]: 26 , pData[3]: 0 , pData[4]: 0
