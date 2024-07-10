@@ -1,7 +1,7 @@
 import time as Time
 import re as RegExp
 import random as Random
-import MyTimeConversion
+from MyTimeConversion import myTimeConvert
 
 '''*********************************************************************************************
 * Class to generate file
@@ -80,35 +80,6 @@ class ReplaceTextFile:
         return tempStr
 #==============================================================================================
 #**********************************************************************************************
-    def __Method_SecondsToTime_d_h_m_s(self, secAmount : int)->tuple:
-        days = secAmount // (60 * 60 * 24) # 60 * 60 * 24
-        secAmount %= (60 * 60 * 24)
-        hours = secAmount // (60 * 60) # 60 * 60
-        secAmount %= (60 * 60)
-        minutes = secAmount // 60
-        secAmount %= 60
-        #return "%02i:%02i:%02i" % (hours, minutes, secAmount)
-        return (days, hours, minutes, secAmount)
-#==============================================================================================
-#**********************************************************************************************
-    def __Method_SecondsToTime_h_m_s(self, secAmount : int)->tuple:
-        hours = secAmount // (60 * 60) # 60 * 60
-        secAmount %= (60 * 60)
-        minutes = secAmount // 60
-        secAmount %= 60
-        #return "%02i:%02i:%02i" % (hours, minutes, secAmount)
-        return (hours, minutes, secAmount)
-#==============================================================================================
-#**********************************************************************************************
-    def __Method_SecondsToTime_h_m(self, secAmount : int)->tuple:
-        hours = secAmount // (3600)
-        secAmount %= (3600)
-        minutes = secAmount // 60
-        secAmount %= 60
-        #return "%02ih%02imin" % (hours, minutes)
-        return (hours, minutes)
-#============================================================================================== 
-#**********************************************************************************************
     def Action_IncTimeByValue(self) -> None:
         self.cycle_amount += 1
 
@@ -123,7 +94,7 @@ class ReplaceTextFile:
 #==============================================================================================
 #**********************************************************************************************
     def GetData(self)->tuple:
-        (day, hour, minute, second)= self.__Method_SecondsToTime_d_h_m_s(self.secActTime)
+        (day, hour, minute, second)= myTimeConvert.SecondsToTime_d_h_m_s(self.secActTime)
         if(day > self.dayLast):
             self.day += 1
             self.dayLast
@@ -135,7 +106,7 @@ class ReplaceTextFile:
         return ("Nr.{}".format(self.cycle_amount))
     
     def GetCyclTime(self)->str:
-        (hour, minute, second) = self.__Method_SecondsToTime_h_m_s(self.secFromBegin)
+        (hour, minute, second) = myTimeConvert.SecondsToTime_h_m_s(self.secFromBegin)
         return ("{}h{}min".format(hour, minute))
 #==============================================================================================
 
@@ -151,7 +122,7 @@ def ReplaceFileEntries()->bool:
 
     instGenetare = ReplaceTextFile(dataList, hour, minute, second, fromCycle, fromSecond)
 
-    mainDir = "C:/_Projekty_/__GM__/GM7159 Ford impregnation line 2/x07_ExportFiles/DryrunLog"
+    mainDir = "C:/_Projekty_/__GM__/GM7159 Ford impregnation line 2/x07_ExportFiles/DryrunLog/"
     srcFile = "Log_File_6_20_2024_Run_1.txt"
     destFile = "_Log_File_6_20_2024_Run_1.txt"
 

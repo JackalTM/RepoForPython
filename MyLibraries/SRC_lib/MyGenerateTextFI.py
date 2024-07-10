@@ -1,6 +1,6 @@
 import random as Random
 import os
-import MyTimeConversion
+from MyTimeConversion import myTimeConvert
 '''*********************************************************************************************
 * Class to generate file
 '''
@@ -29,40 +29,6 @@ class GenerateTextFile:
         return
 #==============================================================================================
 #**********************************************************************************************
-    def __Method_SecondsToTime_d_h_m_s(self, secAmount : int)->tuple:
-        days = secAmount // (60 * 60 * 24) # 60 * 60 * 24
-        secAmount %= (60 * 60 * 24)
-
-        hours = secAmount // (60 * 60) # 60 * 60
-        secAmount %= (60 * 60)
-
-        minutes = secAmount // 60
-        secAmount %= 60
-
-        #return "%02i:%02i:%02i" % (hours, minutes, secAmount)
-        return (days, hours, minutes, secAmount)
-#==============================================================================================
-#**********************************************************************************************
-    def __Method_SecondsToTime_h_m_s(self, secAmount : int)->tuple:
-        hours = secAmount // (60 * 60) # 60 * 60
-        secAmount %= (60 * 60)
-
-        minutes = secAmount // 60
-        secAmount %= 60
-
-        #return "%02i:%02i:%02i" % (hours, minutes, secAmount)
-        return (hours, minutes, secAmount)
-#==============================================================================================
-#**********************************************************************************************
-    def __Method_SecondsToTime_h_m(self, secAmount : int)->tuple:
-        hours = secAmount // (3600)
-        secAmount %= (3600)
-        minutes = secAmount // 60
-        secAmount %= 60
-        #return "%02ih%02imin" % (hours, minutes)
-        return (hours, minutes)
-#============================================================================================== 
-#**********************************************************************************************
     def Action_IncTimeByValue(self) -> None:
         self.cycle_amount += 1
         
@@ -86,7 +52,8 @@ class GenerateTextFile:
 #==============================================================================================
 #**********************************************************************************************
     def Gen_CycleStarted(self)-> str:
-        (hours, minutes, seconds) = self.__Method_SecondsToTime_h_m_s(self.secActTime)
+        #(hours, minutes, seconds) = self.__Method_SecondsToTime_h_m_s(self.secActTime)
+        (hours, minutes, seconds) = myTimeConvert.SecondsToTime_h_m_s(self.secActTime)
         dataStr = "{}.{}.{}".format(self.day, self.month, self.year)
         timeText = "{}:{}:{}".format(hours, minutes, seconds)
 
@@ -94,8 +61,8 @@ class GenerateTextFile:
 #==============================================================================================
 #**********************************************************************************************
     def Gen_CSV_Col_1(self) -> str:
-        (days, hours, minutes, seconds) = self.__Method_SecondsToTime_d_h_m_s(self.secActTime)
-
+        #(days, hours, minutes, seconds) = self.__Method_SecondsToTime_d_h_m_s(self.secActTime)
+        (days, hours, minutes, seconds) = myTimeConvert.SecondsToTime_d_h_m_s(self.secActTime)
         
         if(days > self.dayLast):
             self.dayLast = days
@@ -112,7 +79,8 @@ class GenerateTextFile:
 #==============================================================================================
 #**********************************************************************************************
     def Gen_CSV_Col_3(self) -> str:
-        (hours, minutes) = self.__Method_SecondsToTime_h_m(self.secFromBegin)
+        #(hours, minutes) = self.__Method_SecondsToTime_h_m(self.secFromBegin)
+        (hours, minutes) = myTimeConvert.SecondsToTime_h_m(self.secFromBegin)
         return "Processed Time: {}h{}min".format(hours, minutes) 
 #==============================================================================================
 #**********************************************************************************************
@@ -136,20 +104,19 @@ class GenerateTextFile:
 def GenerateFullFile()->bool:
     #------------------------------------------------------------------------------------------
     # Configuration
-    dataList = (2024, 6, 22)
-    hour = 6
-    minute = 48
-    second = 4
+    dataList = (2024, 7, 10)
+    hour = 7
+    minute = 3
+    second = 14
 
     fromCycle = 0
-    cyclesAmount = 13
+    cyclesAmount = 383
     fromSecond = (0 * 60 * 60) + (0 * 60)
     #===========================================================================================
-
     instGenetare = GenerateTextFile(dataList, hour, minute, second, fromCycle, fromSecond)
-    fileCD = "C:/_Projekty_/__GM__/GM7159 Ford impregnation line 2/x07_ExportFiles/DryrunLog/"
-    fileCD = fileCD + "_test.txt"
-
+    fileCD = "E:/05_Pracowe/"
+    fileCD = fileCD + "test.txt"
+    #===========================================================================================
     myFile = open(fileCD, "w")
     print("File {} created or opened".format(fileCD))
     if(fromCycle == 0):
