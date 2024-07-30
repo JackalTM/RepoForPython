@@ -50,7 +50,74 @@ def CALL_Generator():
     return None
 #====================================================================================================
 
+'''*************************************************************************************************************************************
+@name       GeneratorsPart1
+@brief      ...
+@param[in]  ...
+@note       ...
+@return     ...
+'''
+def GeneratorsPart1():
+    listA = list(range(0x00, 0x04, 0x01))
+    listB = list(range(0x00, 0x04, 0x01))
+
+    # Generator jest opeketem króry generuje następny element wegług jakiegos wzoru
+    # Generator jest opbeiktem który oszczędza pamięć RAM
+
+    # Generator stworzony z innych list
+    genAB = ((a,b) for a in listA for b in listB if a%2==1 and b%2==1)
+    for a,b in genAB:
+        print("a= ", a, "b= ", b)
+    else:
+        print(end='\n')
+
+    # Generator całkowiecie stworzony z inych generatorów
+    genAB = ((a,b) for a in range(0x00, 0x04, 0x01) for b in range(0x00, 0x04, 0x01) if a%2==1 and b%2==1)
+    for a,b in genAB:
+        print("a= ", a, "b= ", b)
+    else:
+        print(end='\n')
+
+    # Aby na nowo wywołać generator należy do od nowa zdefiniować
+    # Nie zawiera on polecenia resetowania
+    return None
+#=======================================================================================================================================
+
+'''*************************************************************************************************************************************
+@name       GeneratorsPart2
+@brief      ...
+@param[in]  ...
+@note       ...
+@return     ...
+'''
+def GeneratorsPart2():
+    # Aby na nowo wywołać generator należy do od nowa zdefiniować
+    # Nie zawiera on polecenia resetowania
+    genAB = ((a,b) for a in range(0x00, 0x04, 0x01) for b in range(0x00, 0x04, 0x01) if a%2==1 and b%2==1)
+    while(1):
+        try:
+            (a,b) = next(genAB)
+            (a,b) = genAB.__next__()
+
+        except StopIteration:
+            print("except StopIteration")
+            break
+        print("a= ", a, "b= ", b)
+
+    return None
+#=======================================================================================================================================
+
+'''*************************************************************************************************************************************
+@name       GeneratorsPart3
+@brief      ...
+@param[in]  ...
+@note       ...
+@return     ...
+'''
+#=======================================================================================================================================
+
+
 if (__name__ == "__main__"):
-    CALL_Generator()
+    GeneratorsPart2()
 else:
     pass
