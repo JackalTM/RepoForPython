@@ -1,0 +1,54 @@
+import itertools as myIt
+
+'''*********************************************************************************
+@name   Test Combinations and Permutations from itertools
+@brief
+@note
+'''
+def CALL_PosibleCombination()->None:
+    tList = ['a','b','c','d']
+    for comb in myIt.combinations(tList,3):
+        print(comb)
+    return None
+def CALL_PosibleCombinationReplacement()->None:
+    tList = ['a','b','c','d']
+    for comb in myIt.combinations_with_replacement(tList,3):
+        print(comb)
+    return None
+#------------------------------------------
+def CALL_PosiblePermutations()->None:
+    tList = ['a','b','c','d']
+    for perm in myIt.combinations(tList,3):
+        print(perm)
+    return None
+#===================================================================================
+
+'''*********************************************************************************
+@name   Test posible ways to pay 100zł
+@brief
+@note
+'''
+def CALL_PosibleWaysToPay()->None:
+    myWallet = (20,20,20,20, 10,10,10, 5,5, 1,1,1,1,1)
+    combList = []
+    _MIN_COMBINATIONS = 6
+    _MAX_COMBINATIONS = 13
+
+    i = _MIN_COMBINATIONS
+    while(i<_MAX_COMBINATIONS):
+        for comb in myIt.combinations(myWallet, i):
+            if(sum(comb) == 100):
+                combList.append(comb)
+        i = i + 1
+    combList = set(combList)
+
+    for i in combList:
+        print(i)
+#===================================================================================
+
+#===================================================================================
+
+if(__name__ == ("__main__")):
+    CALL_PosibleWaysToPay()
+else:
+    pass

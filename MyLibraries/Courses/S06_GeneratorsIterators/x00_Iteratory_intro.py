@@ -2,8 +2,8 @@ import datetime as dt
 
 class MilionDays1():
     """To jest klasa która jest iterowana oraz jest iteratorem"""
-    def __init__(self, year, month, day, maxDays):
-        self.date    = dt.date(year, month, day)
+    def __init__(self, year:int, month:int, day:int, maxDays:int):
+        self.date:dt.date    = dt.date(year, month, day)
         self.maxDays = maxDays
         return None
 
